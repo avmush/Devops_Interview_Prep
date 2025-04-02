@@ -20,7 +20,7 @@ This document combines:
    - [Kubernetes Admin Commands](#kubernetes-admin-commands)
    - [Helm & Kustomize](#helm--kustomize)
    - [12-Factor App Methodology](#12-factor-app-methodology)
-   - [Descriptor Files](#descriptor-files)
+   - [Descriptor Files](#linux-file-descriptors)
    - [JSONPath vs. jq](#jsonpath-vs-jq)
 
 2. [Common Interview Questions](#common-interview-questions)
