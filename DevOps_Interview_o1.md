@@ -1,4 +1,4 @@
-# DevOps & Kubernetes Mega Cheat Sheet + Common Interview Questions (Simple but Detailed)
+# DevOps & Kubernetes Cheat Sheet + Common Interview Questions
 
 This document combines:
 1. **Cheat Sheet** – Simple, yet detailed summaries of essential topics (networking, Linux, Docker, Kubernetes, ArgoCD, security, etc.).
