@@ -323,12 +323,31 @@ Below are **key concepts** in DevOps & Kubernetes, simplified but still detailed
 
 ---
 
-## Descriptor Files
+## Linux File Descriptors
 
-- **Kubernetes YAML** (Deployments, Services, etc.)  
-- **Helm Charts**: `Chart.yaml`, `values.yaml`, templates.  
-- **Terraform** (`.tf`) for infrastructure as code.  
-- **Dockerfile** for building images.
+A **file descriptor (FD)** in Linux is an integer that the operating system uses to identify an open file or I/O resource (like a socket or pipe). Here’s what you need to know:
+
+1. **Integer Handles**  
+   - FDs are simply small integers (`0`, `1`, `2`, …) used by the kernel to keep track of open resources.
+
+2. **Standard File Descriptors**  
+   - **0:** Standard Input (stdin)  
+   - **1:** Standard Output (stdout)  
+   - **2:** Standard Error (stderr)
+
+3. **FDs ≥ 3**  
+   - Assigned to additional opened files, sockets, or pipes.
+   - The OS automatically picks the next available number whenever you open a new resource.
+
+4. **Why They Matter**  
+   - Provides a simple, uniform way to do I/O (read, write) across files, network sockets, etc.
+   - Tools like `ls -l /proc/<PID>/fd` or `lsof` show which FDs a process is using.
+
+5. **Closing FDs**  
+   - When you close a file or when the process ends, the FD is released and can be reused for another resource.
+
+**In summary**, file descriptors act as numeric “handles” to access files and other I/O in Linux, ensuring efficient resource management.
+
 
 ---
 
