@@ -11,6 +11,7 @@ This document combines:
 1. [Cheat Sheet](#cheat-sheet)
    - [Networking Basics](#networking-basics)
    - [Linux Essentials](#linux-essentials)
+   - [Linux File Descriptors](#linux-file-descriptors)
    - [Docker & Containerization](#docker--containerization)
    - [Kubernetes Fundamentals](#kubernetes-fundamentals)
    - [Kubernetes Security & Admission](#kubernetes-security--admission)
@@ -20,7 +21,6 @@ This document combines:
    - [Kubernetes Admin Commands](#kubernetes-admin-commands)
    - [Helm & Kustomize](#helm--kustomize)
    - [12-Factor App Methodology](#12-factor-app-methodology)
-   - [Linux File Descriptors](#linux-file-descriptors)
    - [JSONPath vs. jq](#jsonpath-vs-jq)
 
 2. [Common Interview Questions](#common-interview-questions)
@@ -106,6 +106,34 @@ Below are **key concepts** in DevOps & Kubernetes, simplified but still detailed
 - **SSH & Port Forwarding**  
   - **SSH**: Secure shell, `ssh user@host` for remote.  
   - **Local Forwarding**: `ssh -L 8080:localhost:80 user@host`, a local port (8080) -> remote service (80).
+ 
+    
+---
+
+## Linux File Descriptors
+
+A **file descriptor (FD)** in Linux is an integer that the operating system uses to identify an open file or I/O resource (like a socket or pipe). Here’s what you need to know:
+
+1. **Integer Handles**  
+   - FDs are simply small integers (`0`, `1`, `2`, …) used by the kernel to keep track of open resources.
+
+2. **Standard File Descriptors**  
+   - **0:** Standard Input (stdin)  
+   - **1:** Standard Output (stdout)  
+   - **2:** Standard Error (stderr)
+
+3. **FDs ≥ 3**  
+   - Assigned to additional opened files, sockets, or pipes.
+   - The OS automatically picks the next available number whenever you open a new resource.
+
+4. **Why They Matter**  
+   - Provides a simple, uniform way to do I/O (read, write) across files, network sockets, etc.
+   - Tools like `ls -l /proc/<PID>/fd` or `lsof` show which FDs a process is using.
+
+5. **Closing FDs**  
+   - When you close a file or when the process ends, the FD is released and can be reused for another resource.
+
+**In summary**, file descriptors act as numeric “handles” to access files and other I/O in Linux, ensuring efficient resource management.
 
 ---
 
@@ -320,33 +348,6 @@ Below are **key concepts** in DevOps & Kubernetes, simplified but still detailed
 10. **Dev/prod parity** (keep environments similar)  
 11. **Logs** as event streams  
 12. **Admin processes** run as one-offs
-
----
-
-## Linux File Descriptors
-
-A **file descriptor (FD)** in Linux is an integer that the operating system uses to identify an open file or I/O resource (like a socket or pipe). Here’s what you need to know:
-
-1. **Integer Handles**  
-   - FDs are simply small integers (`0`, `1`, `2`, …) used by the kernel to keep track of open resources.
-
-2. **Standard File Descriptors**  
-   - **0:** Standard Input (stdin)  
-   - **1:** Standard Output (stdout)  
-   - **2:** Standard Error (stderr)
-
-3. **FDs ≥ 3**  
-   - Assigned to additional opened files, sockets, or pipes.
-   - The OS automatically picks the next available number whenever you open a new resource.
-
-4. **Why They Matter**  
-   - Provides a simple, uniform way to do I/O (read, write) across files, network sockets, etc.
-   - Tools like `ls -l /proc/<PID>/fd` or `lsof` show which FDs a process is using.
-
-5. **Closing FDs**  
-   - When you close a file or when the process ends, the FD is released and can be reused for another resource.
-
-**In summary**, file descriptors act as numeric “handles” to access files and other I/O in Linux, ensuring efficient resource management.
 
 
 ---
